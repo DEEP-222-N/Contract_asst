@@ -1,0 +1,31 @@
+name: baseline
+query_preprocess:
+  strip_consider_prefix: true
+chunker:
+  strategy: fixed_tokens
+  size: 500
+  overlap: 100
+embedder:
+  model_name: BAAI/bge-small-en-v1.5
+  batch_size: 32
+  normalize: true
+  query_prefix: ''
+retrieval:
+  mode: hybrid
+  top_k_per_retriever: 20
+  rrf_k: 60
+  top_k_final: 10
+reranker:
+  enabled: false
+  provider: groq
+  model: openai/gpt-oss-20b
+  top_k_in: 20
+  top_k_out: 5
+query_rewrite:
+  enabled: false
+  provider: groq
+  model: openai/gpt-oss-20b
+abstention:
+  mode: none
+  min_top_score: 0.015
+  min_gap: 0.003

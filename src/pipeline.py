@@ -63,6 +63,14 @@ class Pipeline:
     # ------------------------------------------------------------------
     def search(self, query: str) -> RetrievalResult:
         q = query
+
+        # Optional pre-processing: strip the CUAD-style preamble
+        # "Consider the X Agreement between Y and Z; <actual question>".
+        qp = self.cfg.get("query_preprocess", {}) or {}
+        if qp.get("strip_consider_prefix"):
+            if ";" in q and q.lstrip().lower().startswith("consider "):
+                q = q.split(";", 1)[1].strip()
+
         rewritten = None
         if self.cfg.get("query_rewrite", {}).get("enabled"):
             from .llm.groq_client import GroqLLM

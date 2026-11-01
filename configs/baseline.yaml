@@ -4,6 +4,9 @@
 
 name: baseline
 
+query_preprocess:
+  strip_consider_prefix: false    # strip CUAD "Consider the X Agreement...; " preamble
+
 chunker:
   strategy: fixed_tokens          # fixed_tokens | sentence | section
   size: 500                       # characters per chunk
