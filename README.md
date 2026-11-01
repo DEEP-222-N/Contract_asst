@@ -55,7 +55,7 @@ python -m src.cli eval --split test  --config configs/final.yaml
 
 # Self-improvement loop (5 iterations by default; add --use-llm for the
 # Groq-driven proposer)
-python -m src.improvement_loop run --iterations 5
+python -m src.improvement_loop --iterations 5
 
 # Tests
 python -m pytest
@@ -93,7 +93,7 @@ See [REPORT.md](REPORT.md) for the numbers.
 
 ```bash
 python -m src.cli eval --split train --config configs/baseline.yaml   # baseline train
-python -m src.improvement_loop run --iterations 5                     # 5 iterations
+python -m src.improvement_loop --iterations 5                         # 5 iterations
 python -m src.cli eval --split train --config configs/final.yaml      # final train
 python -m src.cli eval --split test  --config configs/final.yaml      # final test
 ```

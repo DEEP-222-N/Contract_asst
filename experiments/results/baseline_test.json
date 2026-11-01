@@ -1,0 +1,1091 @@
+{
+  "config": "configs\\baseline.yaml",
+  "split": "test",
+  "n_queries": 66,
+  "n_answerable": 54,
+  "n_unanswerable": 12,
+  "mean_precision_at": {
+    "1": 0.0,
+    "2": 0.0034156378600823044,
+    "4": 0.014125518453643635,
+    "8": 0.012360166661655321
+  },
+  "mean_recall_at": {
+    "1": 0.0,
+    "2": 0.018518518518518517,
+    "4": 0.07059426357510801,
+    "8": 0.10971426758313128
+  },
+  "correct_abstention_rate": 0.0,
+  "wrong_abstention_rate": 0.0,
+  "per_query": [
+    {
+      "qid": "6c9913fd01e2",
+      "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; What is the expiration date of this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.18444444444444444,
+        "4": 0.08736842105263158,
+        "8": 0.04559187036528426
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 1.0,
+        "4": 1.0,
+        "8": 1.0
+      }
+    },
+    {
+      "qid": "d87cd5a42789",
+      "query": "Consider the Cooperation Agreement between HPIL ENERGYTECH Inc. and GINARES GROUP AG for Renewable Energy Projects; Can this contract be terminated for convenience, and under what conditions?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "fb6eae8fa81a",
+      "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; What is the governing law for this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "b89063dced6c",
+      "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; Does this contract provide for joint intellectual property ownership?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "28bd2166c0d2",
+      "query": "Consider the Sponsorship Agreement between R. C. Boyd Enterprises, LLC and Cano Petroleum, Inc. for 'Honey Hole'; What is the governing law for this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "eaba670bea60",
+      "query": "Consider the Sponsorship Agreement between R. C. Boyd Enterprises, LLC and Cano Petroleum, Inc. for 'Honey Hole'; Is there a minimum commitment required under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0021598272138228943,
+        "8": 0.024774774774774775
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.017391304347826087,
+        "8": 0.3826086956521739
+      }
+    },
+    {
+      "qid": "7060fb8cd059",
+      "query": "Consider the Sponsorship Agreement between Excite, Inc. and Vitamin Shoppe Industries Inc. for Promotion on WebCrawler Channels; Is there uncapped liability under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "f1810b08a733",
+      "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Is there a non-compete clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.26362625139043383,
+        "8": 0.2633856138453218
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.3682983682983683,
+        "8": 0.7567987567987567
+      }
+    },
+    {
+      "qid": "5679d1e334f0",
+      "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Is there an anti-assignment clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "2b766a0fa99e",
+      "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Does this contract include any revenue or profit-sharing arrangements?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "d723aa07bbbf",
+      "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Are there any services to be provided after the termination of this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "2006e77c217b",
+      "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Is there uncapped liability under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "009d715e8a98",
+      "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Is there a cap on liability under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.051108707409410495
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.3393177737881508
+      }
+    },
+    {
+      "qid": "15335d079bfe",
+      "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Is there a covenant not to sue included in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "7ed6af36d09a",
+      "query": "Consider the Supply Agreement between Florida Chemical Company, LLC and Flotek Chemistry, LLC for Terpene Products; Is there an anti-assignment clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "b4dac9dda6c4",
+      "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); Does this contract include an exclusivity agreement?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.06842105263157895,
+        "8": 0.03496503496503497
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.9923664122137404,
+        "8": 0.9923664122137404
+      }
+    },
+    {
+      "qid": "d534b106b814",
+      "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); Can this contract be terminated for convenience, and under what conditions?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "841216ad19e4",
+      "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); What happens in the event of a change of control of one of the parties in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0045945945945945945
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.02857142857142857
+      }
+    },
+    {
+      "qid": "8e0e91c81192",
+      "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); Is there an anti-assignment clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "10f659a70318",
+      "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); What are the insurance requirements under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "8d4ca7d19b1c",
+      "query": "Consider the Co-Branding Agreement between PC Quote, Inc. and A.B. Watley, Inc. for Market Data Software; Is there an anti-assignment clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "9b7a280f20f7",
+      "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Is there a non-compete clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.003076923076923077
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0379746835443038
+      }
+    },
+    {
+      "qid": "7b33951a973e",
+      "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Does this contract include any right of first refusal, right of first offer, or right of first negotiation?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "8ce6a0736e04",
+      "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Is there a minimum commitment required under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "90c12ae4200b",
+      "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Are there any services to be provided after the termination of this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "0a25acd78e18",
+      "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Is there a covenant not to sue included in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "417e32aca484",
+      "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; What is the renewal term for this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "0b6b645726c5",
+      "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; Is there an anti-assignment clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "aec675490914",
+      "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; Is there a covenant not to sue included in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "173007afb27c",
+      "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; What is the expiration date of this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "cc053f1b5546",
+      "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Is there a non-disparagement clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "e89ccb022b72",
+      "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Does this contract include any volume restrictions?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "1252acc03902",
+      "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; What licenses are granted under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.134,
+        "8": 0.067
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.22259136212624583,
+        "8": 0.22259136212624583
+      }
+    },
+    {
+      "qid": "b43662619714",
+      "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Are there any services to be provided after the termination of this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "2358eeb981a9",
+      "query": "Consider the Endorsement Agreement between Holiday RV Superstores, Inc. and Affinity Group, Inc. for Good Sam Branding; What is the governing law for this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "37429e3da64d",
+      "query": "Consider the Endorsement Agreement between Holiday RV Superstores, Inc. and Affinity Group, Inc. for Good Sam Branding; Can this contract be terminated for convenience, and under what conditions?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "0343d20a592a",
+      "query": "Consider the Business Affiliate Agreement between Dr. George D. Green and UNION DENTAL CORP.; What are the audit rights under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "1af567dc13df",
+      "query": "Consider the Support and Maintenance Agreement between On2 Technologies, Inc. and Wildform, Inc.; How is intellectual property ownership assigned in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "5cee78b0cde8",
+      "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; What is the notice period required to terminate the renewal?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "31dfa136c9d2",
+      "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; What is the governing law for this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "853504eb0b47",
+      "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; Can this contract be terminated for convenience, and under what conditions?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "7cc5b99beeb4",
+      "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; What licenses are granted under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "69a61b4c73db",
+      "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; Are there any services to be provided after the termination of this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "84ae82f6b173",
+      "query": "Consider the Joint Venture Agreement between MJ Syndicated, Inc. and Simply Herbals for Manufacturing and Selling Health-Related Products; What is the expiration date of this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.07970244420828905,
+        "8": 0.03966155473294553
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 1.0,
+        "8": 1.0
+      }
+    },
+    {
+      "qid": "a6f669296350",
+      "query": "Consider the Joint Venture Agreement between MJ Syndicated, Inc. and Simply Herbals for Manufacturing and Selling Health-Related Products; Is there an anti-assignment clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "2759981b03dc",
+      "query": "Consider the Joint Venture Agreement between MJ Syndicated, Inc. and Simply Herbals for Manufacturing and Selling Health-Related Products; Is there a cap on liability under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.06953992596509784
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.9528985507246377
+      }
+    },
+    {
+      "qid": "d4c92a2bf4bd",
+      "query": "Consider the Non-Competition Agreement and Right of First Offer between Glamis Gold Ltd. and Western Copper Corporation; What is the governing law for this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "4151738c4f59",
+      "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; What is the governing law for this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "7dc93c612879",
+      "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; Does this contract include any right of first refusal, right of first offer, or right of first negotiation?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "c6bb5b8cba0c",
+      "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; What are the audit rights under this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "fc863a6b899a",
+      "query": "Consider the Strategic Alliance Agreement between Sucampo Pharmaceuticals, Inc., Sucampo Pharma, LLC, and R-Tech Ueno, Ltd.; What is the governing law for this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "5df27c821bf4",
+      "query": "Consider the Strategic Alliance Agreement between Sucampo Pharmaceuticals, Inc., Sucampo Pharma, LLC, and R-Tech Ueno, Ltd.; Is there an anti-assignment clause in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "b5843e9a5503",
+      "query": "Consider the Strategic Alliance Agreement between Sucampo Pharmaceuticals, Inc., Sucampo Pharma, LLC, and R-Tech Ueno, Ltd.; Are there any third-party beneficiaries designated in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.0,
+        "8": 0.0
+      }
+    },
+    {
+      "qid": "7c824b2d3adc",
+      "query": "Consider the Marketing Agreement between Loop Industries, Inc. and Indorama Loop Technologies, LLC for Product Supply and Development; Is there a clause preventing the solicitation of customers in this contract?",
+      "answerable": true,
+      "abstained": false,
+      "precision_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.1275,
+        "8": 0.06375
+      },
+      "recall_at": {
+        "1": 0.0,
+        "2": 0.0,
+        "4": 0.21144278606965175,
+        "8": 0.21144278606965175
+      }
+    },
+    {
+      "qid": "0cb74dd57b7a",
+      "query": "What are the ESG (Environmental, Social, Governance) compliance requirements in this contract?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "c8e2849b47ad",
+      "query": "Does this agreement specify a cybersecurity insurance minimum coverage amount?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "a5a33d82e4ab",
+      "query": "What is the schedule for quarterly ESG reporting to shareholders?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "bf077db198cd",
+      "query": "Does this agreement require SOC 2 Type II certification from the vendor?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "17c441bc21e2",
+      "query": "What is the required encryption standard for data at rest under this agreement?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "0dd310f09dd7",
+      "query": "What is the agreed-upon rate for CO2 offset credits per tonne?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "183538b31066",
+      "query": "What is the required diversity, equity, and inclusion (DEI) hiring quota for the contractor?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "93cd57e709f3",
+      "query": "Does this agreement contain a specific clause for cryptocurrency payments?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "9375ac2478e7",
+      "query": "What are the biometric data handling restrictions under this agreement?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "1a4c825ac305",
+      "query": "Does this agreement specify an API rate limit for programmatic access?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "68d622c1ef0c",
+      "query": "What is the duration of the post-termination non-disparagement clause in months?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    },
+    {
+      "qid": "d4960bdbd5d4",
+      "query": "Does this agreement grant rights to deepfake generation using party likenesses?",
+      "answerable": false,
+      "abstained": false,
+      "precision_at": {},
+      "recall_at": {}
+    }
+  ]
+}
