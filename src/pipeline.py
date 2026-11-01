@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -14,6 +15,27 @@ from .retrieval.faiss_store import FaissIndex
 from .retrieval.hybrid import Hit, rrf
 
 log = logging.getLogger(__name__)
+
+_LLM_UNAVAILABLE_WARNED = False
+
+
+def _llm_available() -> bool:
+    """Guard: pipeline only invokes LLM when a Groq key is actually present.
+
+    Lets configs that have LLM features enabled still run end-to-end when the
+    reviewer has no API key — the pipeline silently falls back to the
+    non-LLM path and logs a single warning.
+    """
+    global _LLM_UNAVAILABLE_WARNED
+    if os.environ.get("GROQ_API_KEY"):
+        return True
+    if not _LLM_UNAVAILABLE_WARNED:
+        log.warning(
+            "GROQ_API_KEY not set; LLM features in the active config will be "
+            "skipped and the pipeline will fall back to pure BM25+FAISS+RRF."
+        )
+        _LLM_UNAVAILABLE_WARNED = True
+    return False
 
 
 @dataclass
@@ -72,13 +94,16 @@ class Pipeline:
                 q = q.split(";", 1)[1].strip()
 
         rewritten = None
-        if self.cfg.get("query_rewrite", {}).get("enabled"):
-            from .llm.groq_client import GroqLLM
-            from .llm.rewriter import rewrite
-            if self._rewriter_llm is None:
-                self._rewriter_llm = GroqLLM(model=self.cfg["query_rewrite"].get("model"))
-            rewritten = rewrite(q, llm=self._rewriter_llm)
-            q = rewritten or q
+        if self.cfg.get("query_rewrite", {}).get("enabled") and _llm_available():
+            try:
+                from .llm.groq_client import GroqLLM
+                from .llm.rewriter import rewrite
+                if self._rewriter_llm is None:
+                    self._rewriter_llm = GroqLLM(model=self.cfg["query_rewrite"].get("model"))
+                rewritten = rewrite(q, llm=self._rewriter_llm)
+                q = rewritten or q
+            except Exception as e:
+                log.warning("LLM query rewrite failed, continuing without it: %s", e)
 
         mode = self.cfg["retrieval"]["mode"]
         tk = int(self.cfg["retrieval"]["top_k_per_retriever"])
@@ -105,15 +130,18 @@ class Pipeline:
             raise ValueError(f"unknown retrieval mode: {mode}")
 
         # Optional LLM rerank.
-        if self.cfg.get("reranker", {}).get("enabled") and hits:
-            from .llm.groq_client import GroqLLM
-            from .llm.reranker import rerank
-            if self._llm is None:
-                self._llm = GroqLLM(model=self.cfg["reranker"].get("model"))
-            top_in = int(self.cfg["reranker"].get("top_k_in", 20))
-            top_out = int(self.cfg["reranker"].get("top_k_out", 5))
-            rr = rerank(q, hits[:top_in], top_k_out=top_out, llm=self._llm)
-            hits = rr.hits
+        if self.cfg.get("reranker", {}).get("enabled") and hits and _llm_available():
+            try:
+                from .llm.groq_client import GroqLLM
+                from .llm.reranker import rerank
+                if self._llm is None:
+                    self._llm = GroqLLM(model=self.cfg["reranker"].get("model"))
+                top_in = int(self.cfg["reranker"].get("top_k_in", 20))
+                top_out = int(self.cfg["reranker"].get("top_k_out", 5))
+                rr = rerank(q, hits[:top_in], top_k_out=top_out, llm=self._llm)
+                hits = rr.hits
+            except Exception as e:
+                log.warning("LLM rerank failed, falling back to RRF order: %s", e)
 
         abstained = should_abstain(hits, self.cfg.get("abstention", {}))
         if abstained:

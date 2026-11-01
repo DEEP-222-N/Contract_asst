@@ -50,9 +50,20 @@ class GroqLLM:
     ) -> str:
         cp = self._cache_path(system, user)
         if not force and cp.exists():
-            return json.loads(cp.read_text(encoding="utf-8"))["content"]
+            cached = json.loads(cp.read_text(encoding="utf-8")).get("content", "")
+            # Earlier cache entries from reasoning models stored content="" because
+            # the answer was routed to `reasoning` instead; re-call in that case.
+            if cached.strip():
+                return cached
 
         client = self._client_lazy()
+        extra: dict[str, Any] = {}
+        # gpt-oss (and other reasoning models) route output to a separate
+        # reasoning channel by default. Ask for minimal reasoning so the actual
+        # answer lands in `content`.
+        if "gpt-oss" in self.model or "o1" in self.model or "o3" in self.model:
+            extra["reasoning_effort"] = "low"
+
         t0 = time.time()
         resp = client.chat.completions.create(
             model=self.model,
@@ -62,8 +73,15 @@ class GroqLLM:
                 {"role": "system", "content": system},
                 {"role": "user", "content": user},
             ],
+            **extra,
         )
-        content = resp.choices[0].message.content or ""
+        msg = resp.choices[0].message
+        content = (msg.content or "").strip()
+        # Fallback for reasoning models that still emit through the reasoning
+        # channel — pull the answer from there so downstream parsers see it.
+        if not content:
+            content = (getattr(msg, "reasoning", None) or "").strip()
+
         payload: dict[str, Any] = {
             "model": self.model,
             "temperature": self.temperature,
