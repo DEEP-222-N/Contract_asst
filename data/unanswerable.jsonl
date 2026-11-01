@@ -1,0 +1,35 @@
+{"query": "What is the carbon-emission reporting obligation of each party under this agreement?", "note": "ESG topic not covered in CUAD commercial contracts"}
+{"query": "Does this agreement contain a specific force majeure clause covering global pandemics or epidemics?", "note": "FM clauses in CUAD rarely enumerate pandemics explicitly"}
+{"query": "What is the maximum data breach notification period in hours required under this contract?", "note": "GDPR-style data breach timing not present"}
+{"query": "Who is the designated Data Protection Officer named in this agreement?", "note": "DPO role not named in these commercial deals"}
+{"query": "What are the ESG (Environmental, Social, Governance) compliance requirements in this contract?", "note": "ESG framework not in CUAD scope"}
+{"query": "Does this agreement specify a cybersecurity insurance minimum coverage amount?", "note": "cyber-insurance minimums not covered"}
+{"query": "What is the arbitration venue for disputes arising in the United Arab Emirates?", "note": "UAE jurisdiction not referenced"}
+{"query": "What is the schedule for quarterly ESG reporting to shareholders?", "note": "not applicable to these contracts"}
+{"query": "Does this agreement require SOC 2 Type II certification from the vendor?", "note": "SOC 2 not mentioned in CUAD contracts"}
+{"query": "What are the specific obligations under the California Consumer Privacy Act (CCPA)?", "note": "CCPA not referenced"}
+{"query": "What is the required encryption standard for data at rest under this agreement?", "note": "encryption specifications not present"}
+{"query": "Does this contract include a right-to-audit clause for environmental compliance?", "note": "environmental audit clauses absent"}
+{"query": "What is the agreed-upon rate for CO2 offset credits per tonne?", "note": "carbon credits not in scope"}
+{"query": "Who holds the title to any AI-generated content produced under this agreement?", "note": "AI-generated IP ownership not addressed"}
+{"query": "What is the maximum acceptable AI-model-hallucination rate for deliverables?", "note": "AI quality thresholds absent"}
+{"query": "Does this agreement grant the right to train large language models on the licensed content?", "note": "LLM training rights not addressed"}
+{"query": "What is the policy for employee stock option vesting under this agreement?", "note": "ESOP terms not covered by commercial contracts"}
+{"query": "What is the required diversity, equity, and inclusion (DEI) hiring quota for the contractor?", "note": "DEI quotas not covered"}
+{"query": "Does this agreement contain a specific clause for cryptocurrency payments?", "note": "crypto payments not in CUAD contracts"}
+{"query": "What is the minimum green-energy percentage required for operations under this agreement?", "note": "green energy requirements absent"}
+{"query": "Does this contract specify quantum-resistant cryptography for all communications?", "note": "quantum crypto not referenced"}
+{"query": "What is the SLA uptime guarantee for the SaaS component expressed as nines (e.g., 99.99%)?", "note": "cloud SLA language rarely in these contracts"}
+{"query": "What are the biometric data handling restrictions under this agreement?", "note": "biometric data not addressed"}
+{"query": "What is the escalation path for disputes exceeding ten million US dollars?", "note": "tiered dollar-based escalation absent"}
+{"query": "Does this agreement specifically prohibit modern slavery and human trafficking in the supply chain?", "note": "modern slavery clause not standard here"}
+{"query": "What is the mandatory ethical AI review process required before deployment?", "note": "AI ethics review not covered"}
+{"query": "What is the policy for whistleblower protection under this contract?", "note": "whistleblower protection usually in employment contracts, not commercial"}
+{"query": "What are the geopolitical sanctions compliance obligations under this agreement?", "note": "OFAC-style sanctions compliance absent"}
+{"query": "Does this contract include provisions for metaverse or virtual world distribution rights?", "note": "metaverse rights not addressed"}
+{"query": "What is the required water-usage limit per facility under this agreement?", "note": "water usage not covered"}
+{"query": "Does this agreement specify an API rate limit for programmatic access?", "note": "API rate limits not covered"}
+{"query": "What are the required accessibility standards (WCAG level) for digital deliverables?", "note": "WCAG not referenced"}
+{"query": "Does this contract require vendor participation in a bug bounty program?", "note": "bug bounty programs not covered"}
+{"query": "What is the duration of the post-termination non-disparagement clause in months?", "note": "non-disparagement often absent"}
+{"query": "Does this agreement grant rights to deepfake generation using party likenesses?", "note": "deepfake rights not addressed"}
