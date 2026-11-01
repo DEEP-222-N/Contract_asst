@@ -1,0 +1,39 @@
+# Baseline pipeline config.
+# This is the first pipeline the system runs. All later iterations should
+# clone this file into configs/iteration_N.yaml and change one thing at a time.
+
+name: baseline
+
+chunker:
+  strategy: fixed_tokens          # fixed_tokens | sentence | section
+  size: 500                       # characters per chunk
+  overlap: 100                    # char overlap between consecutive chunks
+
+embedder:
+  model_name: BAAI/bge-small-en-v1.5
+  batch_size: 32
+  normalize: true
+  query_prefix: ""                # bge-small-en-v1.5 does not need a prefix
+
+retrieval:
+  mode: hybrid                    # bm25 | faiss | hybrid
+  top_k_per_retriever: 20         # candidates each retriever contributes
+  rrf_k: 60                       # RRF constant
+  top_k_final: 10                 # final returned after fusion
+
+reranker:
+  enabled: false
+  provider: groq                  # only used when enabled
+  model: ${env:GROQ_MODEL}
+  top_k_in: 20
+  top_k_out: 5
+
+query_rewrite:
+  enabled: false
+  provider: groq
+  model: ${env:GROQ_MODEL}
+
+abstention:
+  mode: none                      # none | score | score_and_gap
+  min_top_score: 0.015            # fused RRF scores top out near 1/(rrf_k+1) ≈ 0.016
+  min_gap: 0.003

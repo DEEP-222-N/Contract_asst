@@ -1,0 +1,45 @@
+# Secrets
+.env
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Caches / artefacts
+cache/
+.cache/
+indices/
+*.faiss
+*.pkl
+
+# Data (dataset is downloaded; corpus should not be redistributed in the repo)
+data/corpus/
+data/benchmarks/
+data/.cache/
+
+# But DO keep our own small data files
+!data/unanswerable.jsonl
+!data/README.md
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Experiment outputs are kept, raw dumps are not
+experiments/results/raw/
+
+# Streamlit
+.streamlit/secrets.toml

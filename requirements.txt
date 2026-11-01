@@ -1,0 +1,25 @@
+# Core
+numpy>=1.26
+pandas>=2.2
+python-dotenv>=1.0
+pyyaml>=6.0
+typer>=0.12
+tqdm>=4.66
+
+# Retrieval
+sentence-transformers>=3.0
+faiss-cpu>=1.8
+rank-bm25>=0.2.2
+scikit-learn>=1.4
+
+# LLM
+groq>=0.11
+
+# App
+streamlit>=1.37
+
+# Dataset download (already used)
+huggingface_hub>=0.24
+
+# Testing
+pytest>=8.2
