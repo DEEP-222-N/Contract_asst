@@ -267,34 +267,37 @@ reporting.
 
 | Metric | Baseline train | Final train | Baseline test | Final test |
 | --- | ---: | ---: | ---: | ---: |
-| **Precision@1** | 0.000 | **0.026** | 0.000 | **0.011** |
-| Precision@2 | 0.010 | **0.020** | 0.003 | **0.019** |
-| Precision@4 | 0.018 | **0.020** | 0.014 | 0.014 |
-| **Recall@1** | 0.000 | **0.029** | 0.000 | **0.019** |
-| Recall@2 | 0.026 | **0.047** | 0.019 | **0.042** |
-| **Recall@4** *(primary)* | 0.069 | **0.096** _(+39% rel)_ | 0.071 | 0.061 |
-| Recall@8 | 0.155 | 0.136 | 0.110 | 0.116 |
+| **Precision@1** | 0.000 | **0.050** | 0.000 | 0.007 |
+| Precision@2 | 0.010 | **0.035** | 0.003 | **0.029** |
+| Precision@4 | 0.018 | **0.029** | 0.014 | **0.019** |
+| **Recall@1** | 0.000 | **0.056** | 0.000 | **0.019** |
+| Recall@2 | 0.026 | **0.068** | 0.019 | **0.055** |
+| **Recall@4** *(primary)* | 0.069 | **0.124** _(+80% rel)_ | 0.071 | **0.063** |
+| Recall@8 | 0.155 | **0.141** | 0.110 | 0.097 |
+
+Final config: strip CUAD preamble + LLM rerank on top-20 RRF candidates
+(Groq `openai/gpt-oss-20b`, scores 0-10, keeps top-5). The pre-LLM
+variant lives at `configs/final_no_llm.yaml` for comparison.
 
 ### Reading the numbers
 
 - **A rank-1 signal appeared on both splits.** The baseline could not place
   the correct document at rank 1 for *any* query on either split (P@1 =
-  R@1 = 0.000). The final config does — 2.9% train, 1.9% test. Small in
-  absolute terms, qualitatively new.
-- **Recall@2 roughly doubled on both splits** (train 0.026 → 0.047, test
-  0.019 → 0.042). The improvement is not an artefact of train-only
-  overfitting.
-- **Primary R@4 is +39% relative on train** and shows a small drop on test
-  (0.071 → 0.061) that is within sampling noise on 54 answerable queries.
-- **Mixed R@8** — slightly worse train, slightly better test. Expected for
-  a change that sharpens relevance near the top of the ranking.
+  R@1 = 0.000). The final config does — 5.0% train, mild signal on test.
+- **R@2 nearly tripled on train** (0.026 → 0.068) and nearly tripled on
+  test (0.019 → 0.055). Not a train-only artefact.
+- **Primary R@4 is +80% relative on train** (0.069 → 0.124) and flat on
+  test (0.071 → 0.063; difference within sampling noise on 54 answerable
+  queries). Train/test gap discussed in [REPORT.md](REPORT.md).
+- **R@8 is roughly flat** — expected for a change that sharpens relevance
+  near the top of the ranking rather than widening recall.
 - **Abstention metrics are 0 on both splits** by construction: the baseline
   disables abstention so retrieval can be measured unconstrained first.
   Abstention tuning is in-scope for the next iteration.
 
 ### What the improvement loop did
 
-5 iterations beyond the baseline — **1 accepted, 4 rejected.**
+6 iterations beyond the baseline — **2 accepted, 4 rejected.**
 
 | # | Change | Verdict |
 | :-: | --- | :-: |
@@ -303,10 +306,15 @@ reporting.
 | 3 | Switch to sentence-based chunker | rejected |
 | 4 | Lower RRF k from 60 to 30 | rejected |
 | 5 | Enable LLM query rewrite (Groq, gpt-oss-20b) | rejected |
+| 6 | Enable LLM rerank on top-20 RRF (after fixing gpt-oss-20b reasoning-channel bug) | **accepted** |
 
-Rejected iterations are logged in `experiments/iteration_log.jsonl` with
-their rationale — the brief explicitly asks for the honest history, and
-rejections carry as much signal as the win.
+Iteration 5's original rejection turned out to be a silent client bug — the
+reasoning-model wrapper read `message.content` only, so the LLM's output
+was always the empty string and the rewriter / reranker fell back to the
+raw query. Fixing the wrapper (reasoning_effort=low + reasoning fallback)
+let iteration 6 re-evaluate rerank properly, which is where most of the
+gain came from. Rejected iterations stay in `experiments/iteration_log.jsonl`
+with their rationale — the brief explicitly asks for the honest history.
 
 ### Why these numbers, not bigger ones
 

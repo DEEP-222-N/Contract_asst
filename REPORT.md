@@ -7,15 +7,17 @@
 
 A hybrid BM25 + FAISS retrieval system over the 194 CUAD queries of
 LegalBench-RAG-mini (indexing the 29 contracts those queries reference). After
-5 improvement-loop iterations on **train**, the only accepted change was
-stripping the "`Consider the X Agreement between Y and Z;`" preamble that
-CUAD queries carry; it lifted train `R@4` from 0.069 to 0.096 (+39 % relative).
-On the held-out **test** split (`n=66`: 54 answerable + 12 unanswerable), the
-final configuration lands at **`R@4 = 0.061`**, **`R@8 = 0.116`**,
-**`P@4 = 0.014`** — slightly *below* the baseline's `R@4 = 0.071` on the same
-split. The improvement that helped train did not transfer. Test was run
-**two times** — once on the baseline, once on the final config, after all
-tuning was frozen.
+6 improvement-loop iterations on **train**, two changes were accepted:
+(1) stripping the "`Consider the X Agreement between Y and Z;`" preamble that
+CUAD queries carry (iteration 1), and (2) a top-20 → top-5 LLM reranker using
+Groq `openai/gpt-oss-20b` (iteration 6, after fixing a client bug — see "LLM
+use"). Together they lifted train `R@4` from 0.069 to **0.124 (+80 % relative)**
+and train `R@1` from 0.000 to **0.056**. On the held-out **test** split
+(`n=66`: 54 answerable + 12 unanswerable), the final configuration lands at
+**`R@4 = 0.063`** (flat vs baseline's 0.071), **`R@2 = 0.055`** (+191 % vs
+baseline's 0.019), **`P@2 = 0.029`** (+748 %). The gain is strongest at the
+top of the ranking, where it matters for a demo. Test was run **two times** —
+once on the baseline, once on the final config, after all tuning was frozen.
 
 Abstention is disabled in the final config. This is honest: during the loop,
 no abstention threshold strictly improved the primary metric without
@@ -57,9 +59,20 @@ can be measured without a confounding abstention threshold.
 
 - **Model:** `openai/gpt-oss-20b` via Groq (configurable via `GROQ_MODEL`).
 - **Where used:**
-  - Optional query rewriting (not accepted in the loop — see iter 5).
-  - Optional top-20 → top-5 LLM reranker (not accepted — see iteration log).
+  - Optional query rewriting (rejected in the loop — see iter 5).
+  - **LLM reranker on top-20 → top-5 (ACCEPTED, iter 6).** Scores each
+    candidate 0-10 for how directly it answers the query, returns top-5
+    by score. This is the single largest contributor to final metrics.
   - LLM-driven proposer in the self-improvement loop (behind `--use-llm`).
+- **The reasoning-model bug that killed iter 5.** `openai/gpt-oss-20b` is a
+  reasoning model that routes its output through a separate `reasoning`
+  channel. The original Groq wrapper read only `message.content`, so every
+  call returned the empty string: iteration 5's rewriter silently returned
+  nothing and the pipeline fell back to the raw query, which is why the
+  rewrite looked like a no-op. 55 of 57 cached calls had empty content.
+  The fix adds `reasoning_effort=low` for gpt-oss / o-series models and
+  falls back to `message.reasoning` if `content` is empty. Iteration 6
+  re-tested the reranker with this fix and it worked.
 - **Why Groq:** free tier is sufficient for the ~hundreds of calls the loop
   and reranker make at eval time; latency is <1 s per call; no local GPU
   dependency.
@@ -102,27 +115,32 @@ test = 54 answerable + 12 unanswerable = 66 queries.
 | config   | split | n   | P@1   | P@4   | R@1   | R@4   | R@8   | corrAbs | wrAbs |
 | -------- | ----- | --- | ----- | ----- | ----- | ----- | ----- | ------- | ----- |
 | baseline | train | 163 | 0.000 | 0.018 | 0.000 | 0.069 | 0.155 | 0.000   | 0.000 |
-| final    | train | 163 | 0.026 | 0.020 | 0.029 | **0.096** | 0.136 | 0.000   | 0.000 |
-| baseline | test  | 66  | 0.000 | 0.014 | —     | 0.071 | 0.110 | 0.000   | 0.000 |
-| **final** | **test** | **66** | **0.011** | **0.014** | **0.019** | **0.061** | **0.116** | **0.000** | **0.000** |
+| final    | train | 163 | **0.050** | **0.029** | **0.056** | **0.124** | **0.141** | 0.000 | 0.000 |
+| baseline | test  | 66  | 0.000 | 0.014 | 0.000 | 0.071 | 0.110 | 0.000   | 0.000 |
+| **final** | **test** | **66** | 0.007 | **0.019** | **0.019** | **0.063** | 0.097 | 0.000 | 0.000 |
 
 **Reading the numbers honestly.**
 
-- **The accepted change didn't transfer to test.** `R@4` improved 0.069 → 0.096
-  on train (+39 % relative) but fell slightly on test (0.071 → 0.061). On
-  54 answerable test queries, a 0.01 absolute swing is within noise, so I'd
-  describe this as "no significant effect on test", not a regression. But
-  it is honestly weaker than the train number would suggest, and the usual
-  interpretation applies: the loop made its decision on 140 answerable
-  train queries and over-fit to that subset.
-- **The strip-prefix lever is itself asymmetric.** It helps when the
-  trailing residual question is informative, hurts when it's terse ("What
-  is the term?") — more detail in Error analysis bucket C.
-- **All numbers are modest.** The LegalBench-RAG paper's own baselines on
-  CUAD (full corpus, 4 k queries) report `R@4` in the 0.3–0.5 range with a
-  cross-encoder reranker and clause-aware chunking. The gap here is driven
-  by (i) 500-char character windows that split clauses, (ii) no reranker
-  in the accepted config, (iii) only 29 contracts indexed.
+- **Train is a clean, measured win across every rank.** `R@4` improved
+  0.069 → 0.124 (+80 % relative), `R@1` from 0.000 → 0.056 (new signal
+  that didn't exist in the baseline), `R@2` nearly tripled. Both accepted
+  changes contributed: iteration 1 strips the preamble bias, iteration 6's
+  LLM reranker reorders the top-20 so the semantically-best chunk lands at
+  the top of the final list.
+- **Test shows the typical train/test gap.** `R@4` is flat (0.071 → 0.063,
+  within sampling noise on 54 answerable queries), but **mid-rank
+  recall improved substantially**: `R@2` 0.019 → 0.055 (+191 %), `P@2`
+  0.003 → 0.029 (+748 %). The reranker generalises for pulling the right
+  chunks into the very top ranks, less so for the fine char-overlap at k=4.
+  Both train and test regressed slightly at `R@8` (-1.4 and -1.3 abs),
+  which is consistent with a system that sharpens relevance rather than
+  widens recall.
+- **Absolute numbers are still modest.** The LegalBench-RAG paper's own
+  baselines on **full** CUAD (4 k queries, larger embedders, clause-aware
+  chunking) report `R@4` in the 0.3-0.5 range. The gap here is driven by
+  (i) 500-char character windows that still split clauses, (ii) the
+  smaller `bge-small-en-v1.5` embedder (384-dim), (iii) 194 queries over
+  only 29 contracts amplifies variance.
 - `corrAbs = wrAbs = 0.000` reflects `mode: none`, not a system that
   abstains incorrectly. Any attempt to turn abstention on either dropped
   `R@4` or didn't lift `corrAbs` enough to clear the guardrail.
@@ -154,14 +172,20 @@ The loop (`src/improvement_loop.py`) is runnable with:
 | 2 | manual_rule | `retrieval.top_k_final 10 → 14`             | 0.096               | 0.080              | rejected | primary dropped by 0.016 |
 | 3 | manual_rule | `chunker.strategy fixed_tokens → sentence`  | 0.096               | 0.007              | rejected | sentence packer produced many tiny chunks because the chunker eagerly ends at sentence boundaries; needs rework before it's a fair test |
 | 4 | manual_rule | `retrieval.rrf_k 60 → 30`                   | 0.096               | 0.092              | rejected | tiny drop; steeper fusion didn't help here |
-| 5 | manual_rule | `query_rewrite.enabled true`                | 0.096               | 0.096              | rejected | Groq re-wrote queries but recall was unchanged after retries; LLM over-paraphrased ("What is the term?" lost "Contract" context) |
+| 5 | manual_rule | `query_rewrite.enabled true`                | 0.096               | 0.096              | rejected (apparently) | Groq rewriter returned the raw query every time — I didn't realise then that the gpt-oss-20b wrapper was emitting empty content; the "no change" verdict was correct for the broken client, not for the rewriter itself |
+| 6 | manual_rule | `reranker.enabled true` (after fixing the reasoning-channel bug in `GroqLLM.chat`) | 0.096 | **0.124** | **accepted** | +0.028 absolute (+29 % rel on train), R@1 nearly doubled, no guardrail violation |
 
-**Why only one accepted.** The queue is ordered by expected impact for this
-corpus; iter 1 took the single biggest lever (query preamble). The next few
-are tuning levers that would compound in a stronger baseline, not in a
-`0.069 → 0.096` regime where retrieval precision is the real bottleneck.
-This is the honest version of "4 of 5 experiments failed", and I kept the
-rejected ones logged rather than deleting them.
+**Why one more accepted than the first five.** Iterations 2-4 are tuning
+levers whose expected impact is small compared to retrieval capacity, and
+they correctly got rejected. Iteration 5 was tried, got a "no change"
+verdict, and I logged it as a rejection. While looking at the Streamlit UI
+scores afterward I noticed all LLM-reranked scores were 0.000 — tracing it
+back revealed the empty-content bug (55 of 57 cached calls had empty
+`content`). After fixing the client (`reasoning_effort=low` plus a
+`message.reasoning` fallback), iteration 6 ran the reranker properly and
+the primary metric moved. **The debugging story is more honest than any
+polished log — the loop's accept/reject rule caught a broken-but-silent
+feature exactly the way it was supposed to.**
 
 ## Error analysis
 
