@@ -1,6 +1,5 @@
 # Contract Intelligence Assistant
 
-> JioStar take-home — a clause-search system over the
 > [LegalBench-RAG](https://arxiv.org/abs/2408.10343) CUAD benchmark.
 
 Given a natural-language question, the system returns a ranked list of
